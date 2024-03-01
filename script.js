@@ -1,11 +1,25 @@
-const palabra = "APPLE";
+let palabra = "APPLE";
 let vidas = 6;
+
+let diccionario = ["APPLE", "HOUSE", "ANGEL","PASTA", "NEVER", "AFTER"];
+let max =diccionario.length -1;
+let indice = Math.floor(Math.random()* 5 + 1);
+palabra = diccionario [indice];
+
+
+document.getElementById ("guess-input").addEventListener("keypress",(event) => {
+  if (event.key === "Enter") {
+    console.log ("Enter");
+    document.getElementById("guess-button").click();
+  }
+    
+});
 
 document.getElementById("guess-button").addEventListener("click", ()=>{
   const intento = leerIntento ();
   if (palabra === intento) {
-    terminar ("Ganaste!😀")
-    return;
+      terminar ("Ganaste!😀")
+      return;
   }
     const row = document.createElement ("div")
     row.className = "row";
@@ -17,7 +31,7 @@ document.getElementById("guess-button").addEventListener("click", ()=>{
      span.innerText = intento[i];
     if (intento[i] === palabra[i]) {
       span.style.background = "green"
-    } else if (palabra.includes(intento[i])) {
+    } else if (palabra.includes(intento[i]) && noSeRepite(palabra, intento[i])) {
       span.style.background = "yellow"
     } else{
       span.style.background = "gray";
@@ -44,4 +58,9 @@ function leerIntento (){
   let p = document.getElementById("guesses");
   p.innerHTML ="<h1>"+ mensaje + "</h1>";
   console.log (p)
+ }
+ function noSeRepite(palabra,letra){
+  //ver despues
+  return true;
+  
  }
