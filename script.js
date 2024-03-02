@@ -6,7 +6,6 @@ let max =diccionario.length -1;
 let indice = Math.floor(Math.random()* 5 + 1);
 palabra = diccionario [indice];
 
-
 document.getElementById ("guess-input").addEventListener("keypress",(event) => {
   if (event.key === "Enter") {
     console.log ("Enter");
@@ -14,6 +13,14 @@ document.getElementById ("guess-input").addEventListener("keypress",(event) => {
   }
     
 });
+
+const API = "https://random-word-api.vercel.app/api?words=1&length=5";
+
+fetch(API).then ((response)=> {
+  response.json ().then((body)=>{
+   palabra= body[0].toUpperCase();
+  })
+})
 
 document.getElementById("guess-button").addEventListener("click", ()=>{
   const intento = leerIntento ();
@@ -43,6 +50,7 @@ document.getElementById("guess-button").addEventListener("click", ()=>{
 if (!vidas){
 
   terminar ("Perdiste!😖");
+  console.log(palabra);
   return;
 }
 
@@ -55,6 +63,7 @@ function leerIntento (){
 }
 
  function terminar (mensaje){
+  document.getElementById("guess-button").disabled = true;
   let p = document.getElementById("guesses");
   p.innerHTML ="<h1>"+ mensaje + "</h1>";
   console.log (p)
@@ -64,3 +73,8 @@ function leerIntento (){
   return true;
   
  }
+
+
+ 
+ 
+ 

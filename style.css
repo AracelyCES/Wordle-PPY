@@ -16,6 +16,7 @@ margin: 50px;
     border-radius: 5px;
     background-color: rgb(208, 228, 235);
     border-color: bisque;
+    text-align: center;
 }
 #guess-button {
     display: block;
@@ -30,7 +31,11 @@ margin: 50px;
 button:active{
     transform: scale(0.95);
 }
-
+ 
+#guess-button:disabled{
+    background-color: red;
+    border-color: bisque;
+}
 .letter {
     border: 1px solid rgb(255, 251, 251);
     padding: 5px;
